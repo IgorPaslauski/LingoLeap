@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
@@ -17,27 +18,29 @@ export default function TopicSelectionPage() {
       </header>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {quizTopics.map((topic: QuizTopic) => (
-          <Link key={topic.id} href={`/quiz/${topic.id}/1`} passHref legacyBehavior>
-            <a className="block transform transition-all hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-lg">
-              <Card className="flex h-full flex-col overflow-hidden shadow-lg hover:shadow-xl">
-                <CardHeader className="bg-primary/10 p-6">
-                  <div className="mb-3 flex items-center justify-center">
-                    {topic.Icon && <topic.Icon className="h-12 w-12 text-primary" />}
-                  </div>
-                  <CardTitle className="font-headline text-center text-2xl text-primary">
-                    {topic.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-1 flex-col justify-between p-6">
-                  <CardDescription className="mb-4 flex-grow text-base text-muted-foreground">
-                    {topic.description}
-                  </CardDescription>
-                  <div className="mt-auto flex items-center justify-end text-sm font-semibold text-accent">
-                    Começar Agora <ArrowRight className="ml-1 h-4 w-4" />
-                  </div>
-                </CardContent>
-              </Card>
-            </a>
+          <Link
+            key={topic.id}
+            href={`/quiz/${topic.id}/1`}
+            className="block transform rounded-lg transition-all hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
+            <Card className="flex h-full flex-col overflow-hidden shadow-lg hover:shadow-xl">
+              <CardHeader className="bg-primary/10 p-6">
+                <div className="mb-3 flex items-center justify-center">
+                  {topic.Icon && <topic.Icon className="h-12 w-12 text-primary" />}
+                </div>
+                <CardTitle className="font-headline text-center text-2xl text-primary">
+                  {topic.name}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-1 flex-col justify-between p-6">
+                <CardDescription className="mb-4 flex-grow text-base text-muted-foreground">
+                  {topic.description}
+                </CardDescription>
+                <div className="mt-auto flex items-center justify-end text-sm font-semibold text-accent">
+                  Começar Agora <ArrowRight className="ml-1 h-4 w-4" />
+                </div>
+              </CardContent>
+            </Card>
           </Link>
         ))}
       </div>
