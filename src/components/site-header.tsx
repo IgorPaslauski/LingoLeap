@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { BookText, Home, Brain } from 'lucide-react';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { BookText, Home, Brain, ChartNoAxesColumn, LogOut } from "lucide-react";
 
 export function SiteHeader() {
   return (
@@ -48,6 +48,18 @@ export function SiteHeader() {
             >
               <Brain className="h-4 w-4" />
               <span>Tutor IA</span>
+            </Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/home/ranking" className="flex items-center space-x-1">
+              <ChartNoAxesColumn />
+              <span>Ranking</span>
+            </Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/login" className="flex items-center space-x-1">
+              <LogOut className="h-4 w-4" />
+              <span>Sair</span>
             </Link>
           </Button>
         </nav>

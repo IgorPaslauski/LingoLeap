@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 export default function LoginPage() {
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
-    // Implement login logic here
     console.log("Login submitted");
 
     redirect("/home");
