@@ -97,10 +97,10 @@ export default function QuestionPage() {
   const handleNextQuestion = () => {
     if (!currentTopic) return;
     if (questionId < currentTopic.questions.length) {
-      router.push(`/quiz/${topicId}/${questionId + 1}`);
+      router.push(`/home/quiz/${topicId}/${questionId + 1}`);
     } else {
       // Last question, navigate to results
-      router.push(`/resultados?topic=${topicId}&score=${score}&total=${currentTopic.questions.length}`);
+      router.push(`/home/resultados?topic=${topicId}&score=${score}&total=${currentTopic.questions.length}`);
     }
   };
 

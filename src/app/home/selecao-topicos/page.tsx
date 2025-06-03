@@ -20,7 +20,7 @@ export default function TopicSelectionPage() {
         {quizTopics.map((topic: QuizTopic) => (
           <Link
             key={topic.id}
-            href={`/quiz/${topic.id}/1`}
+            href={`/home/quiz/${topic.id}/1`}
             className="block transform rounded-lg transition-all hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
             <Card className="flex h-full flex-col overflow-hidden shadow-lg hover:shadow-xl">
