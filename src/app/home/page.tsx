@@ -31,7 +31,7 @@ export default function HomePage() {
             </svg>
           </div>
           <CardTitle className="font-headline text-4xl font-bold tracking-tight text-primary sm:text-5xl">
-            Bem-vindo ao LingoLeap!
+            Bem-vindo ao PortGo!
           </CardTitle>
           <CardDescription className="mt-2 text-lg text-muted-foreground sm:text-xl">
             Seu portal divertido para aprimorar o Português.

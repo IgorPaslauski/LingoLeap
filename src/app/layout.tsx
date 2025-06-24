@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "LingoLeap: Quiz de Português",
+  title: "PortGo: Quiz de Português",
   description:
     "Quiz educativo de Língua Portuguesa para alunos do Ensino Médio, com foco em inclusão e aprendizado divertido.",
 };
@@ -30,7 +30,6 @@ export default function RootLayout({
       <body className="font-body min-h-screen bg-background antialiased">
         <div className="relative flex min-h-screen flex-col">
           <main className="flex-1">{children}</main>
-          {/* Optional Footer can be added here */}
         </div>
         <Toaster />
       </body>

@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { BookText, Home, Brain, ChartNoAxesColumn, LogOut } from "lucide-react";
+import {
+  BookText,
+  Home,
+  Brain,
+  ChartNoAxesColumn,
+  LogOut,
+  Settings,
+} from "lucide-react";
 
 export function SiteHeader() {
   return (
@@ -22,7 +29,7 @@ export function SiteHeader() {
             <path d="M2 12l10 5 10-5"></path>
           </svg>
           <span className="font-headline text-xl font-bold text-primary">
-            LingoLeap
+            PortGo
           </span>
         </Link>
         <nav className="flex items-center space-x-1">
@@ -54,6 +61,25 @@ export function SiteHeader() {
             <Link href="/home/ranking" className="flex items-center space-x-1">
               <ChartNoAxesColumn />
               <span>Ranking</span>
+            </Link>
+          </Button>
+          <Button variant={"ghost"} asChild>
+            <Link
+              href="/home/configuracao"
+              className="flex items-center space-x-1"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Configurações</span>
+            </Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/home/creditos" className="flex items-center space-x-1">
+              <span>Créditos</span>
+            </Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/home/regras" className="flex items-center space-x-1">
+              <span>Regras</span>
             </Link>
           </Button>
           <Button variant="ghost" asChild>

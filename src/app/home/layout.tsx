@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  title: "LingoLeap: Quiz de Português",
+  title: "PortGo: Quiz de Português",
   description:
     "Quiz educativo de Língua Portuguesa para alunos do Ensino Médio, com foco em inclusão e aprendizado divertido.",
 };

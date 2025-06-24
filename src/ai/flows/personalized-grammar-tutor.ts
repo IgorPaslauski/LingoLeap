@@ -28,23 +28,22 @@ export type PersonalizedGrammarTutorOutput = z.infer<typeof PersonalizedGrammarT
 export async function personalizedGrammarTutor(input: PersonalizedGrammarTutorInput): Promise<PersonalizedGrammarTutorOutput> {
   return personalizedGrammarTutorFlow(input);
 }
-
 const prompt = ai.definePrompt({
-  name: 'personalizedGrammarTutorPrompt',
-  input: {schema: PersonalizedGrammarTutorInputSchema},
-  output: {schema: PersonalizedGrammarTutorOutputSchema},
-  prompt: `You are a helpful and patient grammar tutor.  You provide clear and concise explanations tailored to the student's level.
+  name: "personalizedGrammarTutorPrompt",
+  input: { schema: PersonalizedGrammarTutorInputSchema },
+  output: { schema: PersonalizedGrammarTutorOutputSchema },
+  prompt: `Você é um tutor de gramática prestativo e paciente. Você fornecerá explicações claras e concisas, adaptadas ao nível do aluno. **Sua resposta deve ser sempre em português do Brasil.**
 
-      Student Level: {{{studentLevel}}}
-      Grammar Topic: {{{topic}}}
+      Nível do Estudante: {{{studentLevel}}}
+      Tópico Gramatical: {{{topic}}}
 
       {{#if example}}
-      The student is struggling with this example: {{{example}}}
-      Please provide an explanation that addresses this specific example.
+      O estudante está com dificuldade neste exemplo: {{{example}}}
+      Por favor, forneça uma explicação que aborde este exemplo específico.
       {{/if}}
 
-      Explanation:
-      `, // Missing example generation.  The LLM should generate example.
+      Explicação:
+      `, // Missing example generation. The LLM should generate example.
 });
 
 const personalizedGrammarTutorFlow = ai.defineFlow(

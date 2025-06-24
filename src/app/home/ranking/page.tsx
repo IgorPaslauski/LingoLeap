@@ -86,7 +86,7 @@ export default function RankingPage() {
       <header className="mb-8 text-center">
         <Award className="mx-auto mb-2 h-16 w-16 text-primary" />
         <h1 className="font-headline text-4xl font-bold tracking-tight text-primary sm:text-5xl">
-          Hall da Fama LingoLeap
+          Hall da Fama PortGo
         </h1>
         <p className="mt-3 text-xl text-muted-foreground">
           Confira os mestres da língua portuguesa e suas conquistas!

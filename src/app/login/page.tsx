@@ -9,7 +9,14 @@ export default function LoginPage() {
     redirect("/home");
   };
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen flex-col space-y-8">
+      <div >
+        <h1>
+          <span className="text-4xl font-bold text-gray-800">PortGo</span> {" "}
+          <span className="text-4xl font-bold text-blue-600">Quiz</span>
+          <span className="text-4xl font-bold text-gray-800">App</span>
+        </h1>
+      </div>
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
         <form onSubmit={handleLogin}>
