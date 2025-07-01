@@ -82,6 +82,43 @@ const FormSchema = z.object({
 
 type FormValues = z.infer<typeof FormSchema>;
 
+// Função para processar o texto e adicionar negrito
+const processTextForBold = (text: string) => {
+  // Expressão regular para encontrar texto entre ** (ex: **negrito**)
+  // O grupo de captura () pega o texto dentro dos asteriscos
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      // Remove os asteriscos e retorna um elemento <strong>
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part; // Retorna o texto normal
+  });
+};
+
+// Função para renderizar conteúdo da IA
+const renderAiContent = (content: PersonalizedGrammarTutorOutput) => {
+  const explanation = processTextForBold(content.explanation);
+
+  return (
+    <>
+      <h3 className="font-semibold text-lg mb-1">Explicação:</h3>
+      <p className="whitespace-pre-wrap leading-relaxed">{explanation}</p>
+      {content.examples && content.examples.length > 0 && (
+        <div className="mt-4">
+          <h4 className="font-semibold text-base mb-1">Exemplos:</h4>
+          <ul className="list-disc list-inside space-y-1 text-sm">
+            {content.examples.map((ex, idx) => (
+              <li key={idx}>{processTextForBold(ex)}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
+  );
+};
+
 export default function AiTutorPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -221,32 +258,9 @@ export default function AiTutorPage() {
                     {message.content as string}
                   </p>
                 ) : (
-                  <>
-                    <h3 className="font-semibold text-lg mb-1">Explicação:</h3>
-                    <p className="whitespace-pre-wrap leading-relaxed">
-                      {
-                        (message.content as PersonalizedGrammarTutorOutput)
-                          .explanation
-                      }
-                    </p>
-                    {(message.content as PersonalizedGrammarTutorOutput)
-                      .examples &&
-                      (message.content as PersonalizedGrammarTutorOutput)
-                        .examples.length > 0 && (
-                        <div className="mt-4">
-                          <h4 className="font-semibold text-base mb-1">
-                            Exemplos:
-                          </h4>
-                          <ul className="list-disc list-inside space-y-1 text-sm">
-                            {(
-                              message.content as PersonalizedGrammarTutorOutput
-                            ).examples.map((ex, idx) => (
-                              <li key={idx}>{ex}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                  </>
+                  renderAiContent(
+                    message.content as PersonalizedGrammarTutorOutput
+                  )
                 )}
                 <span
                   className={`block text-xs mt-2 ${

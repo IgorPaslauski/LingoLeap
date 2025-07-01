@@ -32,6 +32,21 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+// Função para processar o texto e adicionar negrito
+// Reutilizada dos componentes anteriores
+const processTextForBold = (text: string) => {
+  // Expressão regular para encontrar texto entre ** (ex: **negrito**)
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      // Remove os asteriscos e retorna um elemento <strong>
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part; // Retorna o texto normal
+  });
+};
+
 export default function QuestionPage() {
   const router = useRouter();
   const params = useParams();
@@ -221,7 +236,7 @@ export default function QuestionPage() {
       <header className="sticky top-0 bg-background/95 backdrop-blur-md z-10 p-4 mb-8 rounded-md shadow-md flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Coins className="h-6 w-6 text-yellow-500" />
-          <span className="font-semibold text-lg">Score: {score}</span>
+          <span className="font-semibold text-lg">Pontuação: {score}/10</span>
         </div>
         <div className="flex items-center gap-4">
           <Sparkles className="h-5 w-5 text-blue-500" />
@@ -246,8 +261,8 @@ export default function QuestionPage() {
         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Coluna da Esquerda: Pergunta e Dicas */}
           <div className="flex flex-col space-y-4">
-            <CardTitle className="font-headline text-2xl md:text-3xl">
-              {currentQuestion.questionText}
+            <CardTitle className="font-headline text-l md:text-xl">
+              {processTextForBold(currentQuestion.questionText)}
             </CardTitle>
             <CardDescription className="text-md text-muted-foreground">
               Selecione a opção correta.
@@ -263,7 +278,7 @@ export default function QuestionPage() {
                   Dica!
                 </AlertTitle>
                 <AlertDescription className="text-blue-600">
-                  {currentQuestion.tip}
+                  {processTextForBold(currentQuestion.tip)}
                 </AlertDescription>
               </Alert>
             )}
@@ -288,7 +303,7 @@ export default function QuestionPage() {
                 <AlertDescription
                   className={`${isCorrect ? "text-green-600" : ""}`}
                 >
-                  {currentQuestion.explanation}
+                  {processTextForBold(currentQuestion.explanation)}
                 </AlertDescription>
               </Alert>
             )}
@@ -351,7 +366,7 @@ export default function QuestionPage() {
                         : "cursor-default"
                     }`}
                   >
-                    {option.text}
+                    {processTextForBold(option.text)}
                   </Label>
                   {isAnswered && option.isCorrect && (
                     <CheckCircle2 className="h-6 w-6 text-green-500" />

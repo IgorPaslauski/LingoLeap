@@ -9,6 +9,21 @@ import {
 } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 
+// Função para processar o texto e adicionar negrito
+// Reutilizada dos componentes anteriores
+const processTextForBold = (text: string) => {
+  // Expressão regular para encontrar texto entre ** (ex: **negrito**)
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      // Remove os asteriscos e retorna um elemento <strong>
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part; // Retorna o texto normal
+  });
+};
+
 export default function HomePage() {
   return (
     <div className="container mx-auto flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-4 sm:p-6 md:p-8">
@@ -31,21 +46,24 @@ export default function HomePage() {
             </svg>
           </div>
           <CardTitle className="font-headline text-4xl font-bold tracking-tight text-primary sm:text-5xl">
-            Bem-vindo ao PortGo!
+            {processTextForBold("Bem-vindo ao **PortGo**!")}
           </CardTitle>
           <CardDescription className="mt-2 text-lg text-muted-foreground sm:text-xl">
-            Seu portal divertido para aprimorar o Português.
+            {processTextForBold(
+              "Seu portal divertido para aprimorar o Português."
+            )}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 text-center">
           <p className="text-md leading-relaxed sm:text-lg">
-            Prepare-se para uma jornada interativa pelo mundo da Língua
-            Portuguesa! Nossos quizzes são projetados para serem inclusivos,
-            acessíveis e super eficientes para alunos do Ensino Médio.
+            {processTextForBold(
+              "Prepare-se para uma jornada interativa pelo mundo da Língua Portuguesa! Nossos quizzes são projetados para serem **inclusivos**, **acessíveis** e super **eficientes** para alunos do Ensino Médio."
+            )}
           </p>
           <p className="text-md sm:text-lg">
-            Desafie seus conhecimentos, aprenda de forma leve e melhore suas
-            habilidades em interpretação, gramática e redação.
+            {processTextForBold(
+              "Desafie seus conhecimentos, aprenda de forma leve e melhore suas habilidades em interpretação, gramática e redação."
+            )}
           </p>
           <Button
             asChild

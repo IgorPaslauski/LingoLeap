@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "next-themes";
+import ThemeToggle from "./ThemeToggle";
 
 export const metadata: Metadata = {
   title: "PortGo: Quiz de Português",
@@ -28,7 +30,10 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body min-h-screen bg-background antialiased">
-        <div className="relative flex min-h-screen flex-col">
+        <div
+          className="relative flex min-h-screen flex-col"
+          suppressHydrationWarning
+        >
           <main className="flex-1">{children}</main>
         </div>
         <Toaster />

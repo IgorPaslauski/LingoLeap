@@ -19,6 +19,21 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
+// Função para processar o texto e adicionar negrito
+// Reutilizada do componente anterior
+const processTextForBold = (text: string) => {
+  // Expressão regular para encontrar texto entre ** (ex: **negrito**)
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      // Remove os asteriscos e retorna um elemento <strong>
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    return part; // Retorna o texto normal
+  });
+};
+
 export default function RegrasPage() {
   return (
     <div className="container mx-auto p-4 py-8 sm:p-6 md:p-8">
@@ -52,9 +67,9 @@ export default function RegrasPage() {
               1. Escolha seu Tópico
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              No menu de **Seleção de Tópicos**, escolha a área da gramática que
-              você deseja praticar. Temos opções desde concordância verbal até
-              regência nominal.
+              {processTextForBold(
+                "No menu de **Seleção de Tópicos**, escolha a área da gramática que você deseja praticar. Temos opções desde concordância verbal até regência nominal."
+              )}
             </p>
           </div>
           <Separator />
@@ -65,9 +80,9 @@ export default function RegrasPage() {
               2. Responda às Questões
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Cada tópico contém uma série de questões. Leia atentamente a
-              pergunta e as opções de resposta. Selecione a alternativa que você
-              considera correta.
+              {processTextForBold(
+                "Cada tópico contém uma série de questões. Leia atentamente a pergunta e as opções de resposta. Selecione a alternativa que você considera correta."
+              )}
             </p>
           </div>
           <Separator />
@@ -78,10 +93,9 @@ export default function RegrasPage() {
               3. Verifique e Aprenda
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Após selecionar sua resposta, o sistema indicará se você acertou
-              ou errou. Uma **explicação detalhada** será fornecida para que
-              você compreenda o porquê da resposta correta. Use-a para aprimorar
-              seus conhecimentos!
+              {processTextForBold(
+                "Após selecionar sua resposta, o sistema indicará se você acertou ou errou. Uma **explicação detalhada** será fornecida para que você compreenda o porquê da resposta correta. Use-a para aprimorar seus conhecimentos!"
+              )}
             </p>
           </div>
           <Separator />
@@ -92,27 +106,34 @@ export default function RegrasPage() {
               4. Peça Ajuda (Opcional)
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-2">
-              Se estiver com dificuldades em uma questão, você pode usar as
-              ajudas disponíveis:
+              {processTextForBold(
+                "Se estiver com dificuldades em uma questão, você pode usar as ajudas disponíveis:"
+              )}
             </p>
             <ul className="list-disc list-inside space-y-1 text-muted-foreground ml-4">
               <li className="flex items-center">
                 <Lightbulb className="mr-2 h-4 w-4 text-blue-500" />
-                **Dica**: Receba uma pista sobre a questão. (Custo: -1 ponto)
+                {processTextForBold(
+                  "**Dica**: Receba uma pista sobre a questão. (Custo: -1 ponto)"
+                )}
               </li>
               <li className="flex items-center">
                 <Eraser className="mr-2 h-4 w-4 text-purple-500" />
-                **Remover 1 Opção**: Elimina uma alternativa incorreta. (Custo:
-                -2 pontos)
+                {processTextForBold(
+                  "**Remover 1 Opção**: Elimina uma alternativa incorreta. (Custo: -2 pontos)"
+                )}
               </li>
               <li className="flex items-center">
                 <Zap className="mr-2 h-4 w-4 text-orange-500" />
-                **Remover 2 Opções**: Elimina duas alternativas incorretas.
-                (Custo: -3 pontos)
+                {processTextForBold(
+                  "**Remover 2 Opções**: Elimina duas alternativas incorretas. (Custo: -3 pontos)"
+                )}
               </li>
             </ul>
             <p className="text-sm italic text-muted-foreground mt-2">
-              Use as ajudas com sabedoria, pois elas afetam sua pontuação final.
+              {processTextForBold(
+                "Use as ajudas com sabedoria, pois elas afetam sua pontuação final."
+              )}
             </p>
           </div>
           <Separator />
@@ -123,8 +144,9 @@ export default function RegrasPage() {
               5. Acompanhe seu Progresso
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Seu desempenho é registrado. Acerte o máximo de questões para
-              **subir no ranking** e se tornar um mestre da língua portuguesa!
+              {processTextForBold(
+                "Seu desempenho é registrado. Acerte o máximo de questões para **subir no ranking** e se tornar um mestre da língua portuguesa!"
+              )}
             </p>
           </div>
         </CardContent>
@@ -144,21 +166,24 @@ export default function RegrasPage() {
         <CardContent className="p-6 space-y-4">
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
             <li>
-              **Revise**: Sempre leia as explicações, mesmo que acerte, para
-              reforçar o aprendizado.
+              {processTextForBold(
+                "**Revise**: Sempre leia as explicações, mesmo que acerte, para reforçar o aprendizado."
+              )}
             </li>
             <li>
-              **Não desista**: Errar faz parte do processo. Use os erros para
-              aprender e melhorar.
+              {processTextForBold(
+                "**Não desista**: Errar faz parte do processo. Use os erros para aprender e melhorar."
+              )}
             </li>
             <li>
-              **Use o Tutor IA**: Se uma explicação não for suficiente, use o
-              nosso **Tutor Gramatical Inteligente** para uma ajuda mais
-              aprofundada!
+              {processTextForBold(
+                "**Use o Tutor IA**: Se uma explicação não for suficiente, use o nosso **Tutor Gramatical Inteligente** para uma ajuda mais aprofundada!"
+              )}
             </li>
             <li>
-              **Pratique Regularmente**: A consistência é a chave para a
-              fluência.
+              {processTextForBold(
+                "**Pratique Regularmente**: A consistência é a chave para a fluência."
+              )}
             </li>
           </ul>
         </CardContent>
